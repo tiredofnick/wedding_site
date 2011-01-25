@@ -1,7 +1,7 @@
 from django.db import models
 
 class Rsvp(models.Model):
-	family = models.CharField(max_length=60)
+	confirmation_code = models.CharField(max_length=60)
 	def __unicode__(self):
 	        return self.family
 	
@@ -12,7 +12,7 @@ class Attendee(models.Model):
 		('1', 'Yes!'),
 		('0', 'No, Sorry!'),
 	)
-	attending = models.CharField(max_length=1, choices=ATTENDING_CHOICES)
+	attending = models.CharField(null=True, max_length=1, choices=ATTENDING_CHOICES)
 	def __unicode__(self):
 	        return self.name
 	
