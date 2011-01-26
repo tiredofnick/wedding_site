@@ -18,6 +18,6 @@ class Attendee(models.Model):
 		('1', 'Vegetarian'),
 		('2', 'Chicken')
 	)
-	meal = models.CharField(max_length=1, choices=MEAL_CHOICES)
+	meal = models.CharField(null=True, max_length=1, choices=MEAL_CHOICES)
 	def __unicode__(self):
 	        return self.name
