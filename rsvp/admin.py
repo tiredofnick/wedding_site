@@ -7,9 +7,6 @@ from django.contrib import admin
 # admin.site.register(Attendee)
 # admin.site.register(Meal)
 
-class MealInline(admin.StackedInline):
-    model = Meal
-
 class AttendeeInline(admin.ModelAdmin):
     model = Attendee
     extra = 3

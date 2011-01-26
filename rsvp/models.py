@@ -13,11 +13,6 @@ class Attendee(models.Model):
 		('0', 'No, Sorry!'),
 	)
 	attending = models.CharField(null=True, max_length=1, choices=ATTENDING_CHOICES)
-	def __unicode__(self):
-	        return self.name
-	
-class Meal(models.Model):
-	attendee = models.ForeignKey(Attendee)
 	MEAL_CHOICES = (
 		('0', 'Clambake'),
 		('1', 'Vegetarian'),
@@ -25,4 +20,4 @@ class Meal(models.Model):
 	)
 	meal = models.CharField(max_length=1, choices=MEAL_CHOICES)
 	def __unicode__(self):
-	        return self.meal
+	        return self.name
