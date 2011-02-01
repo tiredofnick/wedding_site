@@ -5,7 +5,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^rsvp/$', 'rsvp.views.index'),
-	(r'^rsvp/(?P<rsvp_id>\d+)/$', 'rsvp.views.detail'),
+    (r'^rsvp/', include(rsvp.urls)),
     (r'^admin/', include(admin.site.urls)),
 )
