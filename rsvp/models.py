@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 
 class Rsvp(models.Model):
 	confirmation_code = models.CharField(max_length=60)
@@ -19,3 +20,7 @@ class Attendee(models.Model):
 		('2', 'Chicken')
 	)
 	meal = models.CharField(blank=True, max_length=1, choices=MEAL_CHOICES)
+	
+class RsvpForm(ModelForm):
+	class Meta:
+		model = Attendee
