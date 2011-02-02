@@ -1,2 +1,7 @@
 
 <h1>{{ rsvp.confirmation_code }}</h1>
+<ul>
+{% for attendee in rsvp.attendee_set.all %}
+	<li>{{ attendee.name }} - {{ attendee.attending }} meal: {{ attendee.meal }}</li>
+{% endfor %}
+</ul>
