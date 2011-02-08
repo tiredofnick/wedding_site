@@ -1,7 +1,12 @@
+{% extends "base.html" %}
 
-<h1>{{ rsvp.confirmation_code }}</h1>
-<ul>
-{% for attendee in rsvp.attendee_set.all %}
-	<li>{{ attendee.name }} - {{ attendee.attending }} meal: {{ attendee.meal }}</li>
-{% endfor %}
-</ul>
+{% block title %}Nick and Katie Get Married :: RSVP{% endblock %}
+
+{% block content %}
+	<h1>{{ rsvp.confirmation_code }}</h1>
+	<ul>
+	{% for attendee in rsvp.attendee_set.all %}
+		<li>{{ attendee.name }} - {{ attendee.attending }} meal: {{ attendee.meal }}</li>
+	{% endfor %}
+	</ul>
+{% endblock %}

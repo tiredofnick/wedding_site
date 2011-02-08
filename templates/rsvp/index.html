@@ -1,10 +1,9 @@
+{% extends "base.html" %}
 
-<html>
-<head>
-	<title>Nick and Katie Get Married :: RSVP</title>
-</head>
-<body>
-	<div id="container">
+{% block title %}Nick and Katie Get Married :: RSVP{% endblock %}
+
+{% block content %}
+<div id="container">
 		<h2>Please enter your code below</h2>
 		<form action="/rsvp/" method="post">
 			{% csrf_token %}
@@ -12,5 +11,4 @@
 			<input type="submit" value"Confirmation Code">
 		</form>
 	</div>
-</body>
-</html>
+{% endblock %}
