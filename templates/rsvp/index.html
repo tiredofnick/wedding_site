@@ -4,11 +4,11 @@
 
 {% block content %}
 <div id="container">
-		<h2>Please enter your code below</h2>
-		<form action="/rsvp/" method="post">
-			{% csrf_token %}
-			<input type="text" name="confirmation_code">
-			<input type="submit" value"Confirmation Code">
-		</form>
-	</div>
+	<h2>Please enter your code below</h2>
+	<form action="/rsvp/" method="post">
+		{% csrf_token %}
+		<input type="text" name="confirmation_code">
+		<input type="submit">
+	</form>
+</div>
 {% endblock %}

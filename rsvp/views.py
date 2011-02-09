@@ -6,21 +6,20 @@ from rsvp.models import Rsvp, Attendee, RsvpForm
 
 
 def index(request):
-	#return render_to_response('rsvp/index.html', context_instance=RequestContext(request))
 	if request.method == 'POST':
 		rsvp = RsvpForm(request.POST)
 		try:
 			r = Rsvp.objects.get(confirmation_code=request.POST['confirmation_code'])
 		except Rsvp.DoesNotExist:
 			raise Http404
-		return render_to_response('rsvp/detail.html', {'rsvp': r})
+		return render_to_response('rsvp/detail.html', {'rsvp': r}, context_instance=RequestContext(request))
 	else:
 		return render_to_response('rsvp/index.html', context_instance=RequestContext(request))
 
 def detail(request, code):
 	r = get_object_or_404(Rsvp, confirmation_code=code)
-#	r = get_object_or_404(Rsvp, confirmation_code=request.POST['confirmation_code'])
-	return render_to_response('rsvp/detail.html', {'rsvp': r})
-	#try:
-	#	r = request.POST['confirmation_code']
-	#	return render_to_response('rsvp/detail.html', {'rsvp': r})
+	return render_to_response('rsvp/detail.html', {'rsvp': r}, context_instance=RequestContext(request))
+	
+def submit(request):
+	return
+	

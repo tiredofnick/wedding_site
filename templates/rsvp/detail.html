@@ -3,10 +3,29 @@
 {% block title %}Nick and Katie Get Married :: RSVP{% endblock %}
 
 {% block content %}
+<div id="container">
 	<h1>{{ rsvp.confirmation_code }}</h1>
+	<form action="/rsvp/submit/" method="post">
+	{% csrf_token %}
+	<input type="hidden" name="confirmation_code" value="{{ rsvp.confirmation_code }}">
 	<ul>
 	{% for attendee in rsvp.attendee_set.all %}
-		<li>{{ attendee.name }} - {{ attendee.attending }} meal: {{ attendee.meal }}</li>
+		<li>{{ attendee.name }} <input type="hidden" name="name-{{ forloop.counter0 }}" value="{{ attendee.name }}"> - attending: 
+			<select name="attending-{{ forloop.counter0 }}">
+				<option value=null {% if attendee.attending == null %} selected="selected"{% endif %}> --- </option>
+				<option value="0" {% if attendee.attending == '0' %} selected="selected"{% endif %}>Yes!</option>
+				<option value="1" {% if attendee.attending == '1' %} selected="selected"{% endif %}>Sorry, no!</option>
+			</select> meal:
+			<select name="meal-{{ forloop.counter0 }}">
+				<option value=null {% if attendee.meal == null %} selected="selected"{% endif %}> --- </option>
+				<option value="0" {% if attendee.meal == '0' %} selected="selected"{% endif %}>Clambake</option>
+				<option value="1" {% if attendee.meal == '1' %} selected="selected"{% endif %}>Vegetarian</option>
+				<option value="2" {% if attendee.meal == '2' %} selected="selected"{% endif %}>Chicken</option>
+			</select>
+		</li>
 	{% endfor %}
 	</ul>
+	<input type="submit" value="Confirm!">
+	</form>
+</div>
 {% endblock %}
