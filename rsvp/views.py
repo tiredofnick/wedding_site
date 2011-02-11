@@ -20,6 +20,19 @@ def detail(request, code):
 	r = get_object_or_404(Rsvp, confirmation_code=code)
 	return render_to_response('rsvp/detail.html', {'rsvp': r}, context_instance=RequestContext(request))
 	
-def submit(request):
-	return
-	
+def submit(request, rsvp_id):
+	r = get_object_or_404(Rsvp, confirmation_code=rsvp_id)
+	try:
+		attending_status = r.attendee_set.get(name=request.POST['name'])
+		attending_meal = r.attendee_set.get(meal=request.POST['meal'])
+	except (KeyError, Attendee.DoesNotExist):
+		return render_to_response('rsvp/detail.html', {
+			'rsvp': r,
+			'error_message': "You didn't select a status.",
+			}, context_instance=RequestContext(request))
+	else:
+		attending_status.attending += 1
+		attending_status.save()
+		attending_meal.meal += 1
+		attending_meal.save()
+		return HttpResponseRedirect(reverse('rsvp.views.detail', args=(r.confirmation_code,)))
