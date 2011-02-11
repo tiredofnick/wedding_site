@@ -12,12 +12,12 @@
 	<ul>
 	{% for attendee in rsvp.attendee_set.all %}
 		<li>{{ attendee.name }} <input type="hidden" name="name{{ forloop.counter }}" value="{{ attendee.name }}"> - attending: 
-			<select name="attending" id="attending{{ forloop.counter }}">
+			<select name="attending{{ forloop.counter }}" id="attending{{ forloop.counter }}">
 				<option value=null {% if attendee.attending == null %} selected="selected"{% endif %}> --- </option>
 				<option value="0" {% if attendee.attending == '0' %} selected="selected"{% endif %}>Yes!</option>
 				<option value="1" {% if attendee.attending == '1' %} selected="selected"{% endif %}>Sorry, no!</option>
 			</select> meal:
-			<select name="meal" id="meal{{ forloop.counter }}">
+			<select name="meal{{ forloop.counter }}" id="meal{{ forloop.counter }}">
 				<option value=null {% if attendee.meal == null %} selected="selected"{% endif %}> --- </option>
 				<option value="0" {% if attendee.meal == '0' %} selected="selected"{% endif %}>Clambake</option>
 				<option value="1" {% if attendee.meal == '1' %} selected="selected"{% endif %}>Vegetarian</option>

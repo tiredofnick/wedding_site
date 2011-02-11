@@ -23,7 +23,7 @@ def detail(request, code):
 def submit(request, rsvp_id):
 	r = get_object_or_404(Rsvp, confirmation_code=rsvp_id)
 	try:
-		attending_status = r.attendee_set.get(name=request.POST['name'])
+		attending_status = r.attendee_set.get(attending=request.POST['attending'])
 		attending_meal = r.attendee_set.get(meal=request.POST['meal'])
 	except (KeyError, Attendee.DoesNotExist):
 		return render_to_response('rsvp/detail.html', {
